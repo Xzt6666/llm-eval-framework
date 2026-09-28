@@ -302,4 +302,11 @@ def cosine_similarity(text1: str, text2: str) -> float:
 
     if norm1 == 0 or norm2 == 0:
         return 0.0
-    return dot / (norm1 * norm2)
+
+    cos = dot / (norm1 * norm2)
+
+    # 浮点误差兜底：完全相同的两段文本，理论上 cos 应为 1.0，
+    # 但不同 Python 版本对浮点求和的处理不同（3.12+ 起 sum() 使用补偿求和），
+    # 3.10 / 3.11 上可能算出 1.0000000000000002，从而超出 [0, 1] 取值范围。
+    # 指标必须满足 0 <= cos <= 1，这里显式夹取，保证结果稳定、可断言。
+    return max(0.0, min(1.0, cos))

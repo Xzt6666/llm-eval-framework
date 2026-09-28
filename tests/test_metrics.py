@@ -121,6 +121,29 @@ class TestCosineSimilarity:
     def test_identical(self):
         assert metrics.cosine_similarity("机器学习很有趣", "机器学习很有趣") == pytest.approx(1.0)
 
+    def test_identical_result_never_exceeds_one(self):
+        """回归测试：浮点误差不得让相似度越过上界。
+
+        背景：CPython 3.12 起 sum() 对浮点启用了补偿求和，3.10 / 3.11 没有，
+        完全相同的文本在旧版本上可能算出 1.0000000000000002。
+        cosine_similarity 内部必须夹取到 [0, 1]，否则 CI 在 3.10 / 3.11 会红。
+        """
+        sim = metrics.cosine_similarity("the quick brown fox", "the quick brown fox")
+        assert sim <= 1.0
+        assert sim == 1.0
+
+    def test_result_always_in_range(self):
+        # 遍历若干组合，保证任何输入下相似度都落在 [0, 1]
+        pairs = [
+            ("机器学习很有趣", "机器学习很有趣"),
+            ("a b c d e f", "f e d c b a"),
+            ("今天下雨", "今天下雨吗"),
+            ("", "空输入"),
+        ]
+        for text1, text2 in pairs:
+            sim = metrics.cosine_similarity(text1, text2)
+            assert 0.0 <= sim <= 1.0, (text1, text2, sim)
+
     def test_unrelated(self):
         assert metrics.cosine_similarity("今天下雨", "量子力学") == 0.0
 
