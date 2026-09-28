@@ -1,0 +1,27 @@
+# =====================================================================
+# 项目配置：pytest 运行规则 + 包信息
+# 说明：这里配置了 pytest 从哪里找测试、以及 src 布局如何导入包
+# =====================================================================
+
+[project]
+name = "llm-eval"
+version = "0.1.0"
+description = "一个面向 LLM（大语言模型）输出的轻量评测框架，用 pytest 组织评测用例"
+requires-python = ">=3.9"
+
+# ---------- pytest 配置 ----------
+[tool.pytest.ini_options]
+# 测试文件所在目录
+testpaths = ["tests"]
+# 只识别以 test_ 开头的文件
+python_files = ["test_*.py"]
+# 让 pytest 能找到 src 目录下的 llm_eval 包（src 布局）
+pythonpath = ["src"]
+# 打印每条测试的详细结果，便于观察每个评测用例的得分
+addopts = "-v --tb=short"
+# 自定义 marker：标记某条测试属于哪个评测任务（分类/摘要/问答等）
+markers = [
+    "classification: 分类任务评测",
+    "generation: 生成任务评测（摘要/翻译/问答）",
+    "judge: 依赖 LLM 裁判的评测",
+]

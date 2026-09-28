@@ -1,0 +1,66 @@
+[
+  {
+    "id": "cls-001",
+    "task_type": "classification",
+    "prompt": "对以下句子做情感分析（正面/负面/中性）：这个电影太棒了，我看了三遍。",
+    "reference": "正面",
+    "model_output": "正面",
+    "metadata": {"difficulty": "easy", "category": "情感分析"}
+  },
+  {
+    "id": "cls-002",
+    "task_type": "classification",
+    "prompt": "对以下句子做情感分析（正面/负面/中性）：服务态度很差，等了一个小时。",
+    "reference": "负面",
+    "model_output": "中性",
+    "metadata": {"difficulty": "easy", "category": "情感分析"}
+  },
+  {
+    "id": "cls-003",
+    "task_type": "classification",
+    "prompt": "判断这封邮件是否是垃圾邮件（垃圾邮件/正常邮件）：恭喜您获得百万大奖，点击链接领取。",
+    "reference": "垃圾邮件",
+    "model_output": "垃圾邮件",
+    "metadata": {"difficulty": "easy", "category": "垃圾邮件识别"}
+  },
+  {
+    "id": "cls-004",
+    "task_type": "classification",
+    "prompt": "对这条新闻做主题分类（财经/体育/科技）：今天 A 股三大指数集体大涨。",
+    "reference": "财经",
+    "model_output": "体育",
+    "metadata": {"difficulty": "easy", "category": "主题分类"}
+  },
+  {
+    "id": "gen-001",
+    "task_type": "generation",
+    "prompt": "请用一句话概括：今天上午公司召开全体会议，会上公布了第三季度财报，营收同比增长百分之二十，并宣布将加大对人工智能业务的投入。",
+    "reference": "公司第三季度营收同比增长百分之二十，并将加大人工智能业务投入。",
+    "model_output": "公司公布第三季度财报，营收增长百分之二十，并加大人工智能投入。",
+    "metadata": {"difficulty": "medium", "category": "文本摘要"}
+  },
+  {
+    "id": "gen-002",
+    "task_type": "generation",
+    "prompt": "请把这句话翻译成中文：Hello world, welcome to our platform.",
+    "reference": "你好，世界，欢迎来到我们的平台。",
+    "model_output": "你好世界，欢迎来到我们的平台",
+    "metadata": {"difficulty": "medium", "category": "机器翻译"}
+  },
+  {
+    "id": "gen-003",
+    "task_type": "generation",
+    "prompt": "法国的首都是哪里？",
+    "reference": "巴黎",
+    "model_output": "巴黎是法国的首都",
+    "metadata": {"difficulty": "easy", "category": "开放问答"}
+  },
+  {
+    "id": "gen-004",
+    "task_type": "generation",
+    "prompt": "中国的首都是哪里？",
+    "reference": "北京",
+    "model_output": "上海",
+    "metadata": {"difficulty": "easy", "category": "开放问答"}
+  }
+]
