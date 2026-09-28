@@ -3,7 +3,6 @@
 一个面向 **LLM 输出评测** 的轻量 Python 项目，用 **pytest 组织评测用例**，覆盖从
 「评测数据集 → 指标计算 → 评估 → LLM 裁判 → 报告」的完整链路。
 
-> 适合用于：补充「AI 评测」相关项目经验、学习 LLM 评测的核心概念、作为简历项目。
 
 ---
 
@@ -126,9 +125,9 @@ print(verdict.score, verdict.reason)  # 语义正确，分数会比规则指标�
 
 ---
 
-## 七、学习路线建议
+## 七、阅读路线建议
 
-1. 先读 `metrics.py`，逐个指标对照注释理解数学原理（建议手推一遍 ROUGE-L 的 DP）
+1. 先读 `metrics.py`，逐个指标对照注释理解数学原理
 2. 再读 `evaluator.py`，理解「按任务类型选指标」的调度逻辑
 3. 读 `tests/test_evaluation.py`，理解「评测用例 = pytest 测试」的设计
 4. 跑 `python run_eval.py`，打开生成的 HTML 报告看效果
